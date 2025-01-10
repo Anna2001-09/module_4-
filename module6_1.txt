@@ -1,0 +1,85 @@
+class Animal:
+    alive = True
+    fed = False
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Plant:
+    edible = False
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Mammal(Animal):
+    def eat(self, food):
+        if food.edible:
+            print(f'{self.name} съел {food.name}')
+            self.fed = True
+        else:
+            print(f'{self.name} не стал есть {food.name}')
+            self.alive = False
+
+
+class Predator(Animal):
+
+    def eat(self, food):
+        if food.edible:
+            print(f'{self.name} съел {food.name}')
+            self.fed = True
+        else:
+            print(f'{self.name} не стал есть {food.name}')
+            self.alive = False
+
+
+class Flower(Plant):
+    pass
+
+
+class Fruit(Plant):
+    edible = True
+
+
+animal1 = Predator('Lion')
+animal2 = Mammal('Cow')
+plant1 = Plant('Lily')
+plant2 = Fruit('Orange')
+
+print(animal1.name)
+print(plant1.name)
+
+print(animal1.alive, f'- {animal1.name} живой')
+print(animal2.fed, f'- {animal2.name} голоден')
+
+animal1.eat(plant1)
+animal2.eat(plant2)
+print(animal1.alive, f'- {animal1.name} помер')
+print(animal2.fed, f'- {animal2.name} сыт')
+
+
+@staticmethod
+def hash_password(password):
+    return int(hashlib.sha256(password.encode()).hexdigest(), 16)
+
+
+ur = UrTube()
+v1 = Video('Лучший язык программирования 2024 года', 200)
+v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
+
+ur.add(v1, v2)
+
+print(ur.get_videos('лучший'))
+print(ur.get_videos('ПРОГ'))
+
+ur.watch_video('Для чего девушкам парень программист?')
+ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+ur.watch_video('Для чего девушкам парень программист?')
+ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
+ur.watch_video('Для чего девушкам парень программист?')
+
+ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+print(ur.current_user)
+
+ur.watch_video('Лучший язык программирования 2024 года!')
